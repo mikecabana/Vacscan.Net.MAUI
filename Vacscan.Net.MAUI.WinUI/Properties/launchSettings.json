@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Vacscan.Net.MAUI.WinUI": {
+      "commandName": "MsixPackage",
+      "nativeDebugging": false
+    }
+  }
+}

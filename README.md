@@ -2,6 +2,7 @@
 
 ## Run on MacOS
 
+From the terminal
 ```terminal
 dotnet build Vacscan.Net.MAUI -t:Run -f net6.0-android
 dotnet build Vacscan.Net.MAUI -t:Run -f net6.0-ios

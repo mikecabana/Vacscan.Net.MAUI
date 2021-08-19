@@ -30,118 +30,118 @@ using AndroidX.Camera.Camera2.InterOp;
 
 namespace ZXing.Net.Maui
 {
-	public partial class CameraBarcodeReaderViewHandler : ViewHandler<ICameraBarcodeReaderView, AView>, IDisposable
-	{
-		AndroidX.Camera.Core.Preview cameraPreview;
-		ImageAnalysis imageAnalyzer;
-		PreviewView previewView;
-		IExecutorService cameraExecutor;
-		CameraSelector cameraSelector = null;
-		ProcessCameraProvider cameraProvider;
-		ICamera camera;
+    public partial class CameraBarcodeReaderViewHandler : ViewHandler<ICameraBarcodeReaderView, AView>, IDisposable
+    {
+        AndroidX.Camera.Core.Preview cameraPreview;
+        ImageAnalysis imageAnalyzer;
+        PreviewView previewView;
+        IExecutorService cameraExecutor;
+        CameraSelector cameraSelector = null;
+        ProcessCameraProvider cameraProvider;
+        ICamera camera;
 
-		protected override AView CreateNativeView()
-		{
-			previewView = new PreviewView(Context);
-			cameraExecutor = Executors.NewSingleThreadExecutor();
+        protected override AView CreateNativeView()
+        {
+            previewView = new PreviewView(Context);
+            cameraExecutor = Executors.NewSingleThreadExecutor();
 
-			return previewView;
-		}
-	
-		protected override async void ConnectHandler(AView nativeView)
-		{
-			base.ConnectHandler(nativeView);
+            return previewView;
+        }
 
-			Init();
+        protected override async void ConnectHandler(AView nativeView)
+        {
+            base.ConnectHandler(nativeView);
 
-			if (await CheckPermissions())
-			{
-				StartCamera();
-			}
-		}
+            Init();
 
-		void StartCamera()
-		{
-			var cameraProviderFuture = ProcessCameraProvider.GetInstance(Context);
+            if (await CheckPermissions())
+            {
+                StartCamera();
+            }
+        }
 
-			cameraProviderFuture.AddListener(new Java.Lang.Runnable(() =>
-			{
-				// Used to bind the lifecycle of cameras to the lifecycle owner
-				cameraProvider = (ProcessCameraProvider)cameraProviderFuture.Get();
+        void StartCamera()
+        {
+            var cameraProviderFuture = ProcessCameraProvider.GetInstance(Context);
 
-				// Preview
-				cameraPreview = new AndroidX.Camera.Core.Preview.Builder().Build();
-				cameraPreview.SetSurfaceProvider(previewView.SurfaceProvider);
+            cameraProviderFuture.AddListener(new Java.Lang.Runnable(() =>
+            {
+                // Used to bind the lifecycle of cameras to the lifecycle owner
+                cameraProvider = (ProcessCameraProvider)cameraProviderFuture.Get();
 
-				// Frame by frame analyze
-				imageAnalyzer = new ImageAnalysis.Builder()
-					.SetDefaultResolution(new Android.Util.Size(640, 480))
-					.SetBackpressureStrategy(ImageAnalysis.StrategyKeepOnlyLatest)
-					.Build();
+                // Preview
+                cameraPreview = new AndroidX.Camera.Core.Preview.Builder().Build();
+                cameraPreview.SetSurfaceProvider(previewView.SurfaceProvider);
 
-				imageAnalyzer.SetAnalyzer(cameraExecutor, new FrameAnalyzer((buffer, size) =>
-				{
-					if (VirtualView.IsDetecting)
-						Decode(new Readers.PixelBufferHolder { Data = buffer, Size = size });
-				}));
+                // Frame by frame analyze
+                imageAnalyzer = new ImageAnalysis.Builder()
+                    .SetDefaultResolution(new Android.Util.Size(640, 480))
+                    .SetBackpressureStrategy(ImageAnalysis.StrategyKeepOnlyLatest)
+                    .Build();
 
-				BindCamera();
+                imageAnalyzer.SetAnalyzer(cameraExecutor, new FrameAnalyzer((buffer, size) =>
+                {
+                    if (VirtualView.IsDetecting)
+                        Decode(new Readers.PixelBufferHolder { Data = buffer, Size = size });
+                }));
 
-			}), ContextCompat.GetMainExecutor(Context)); //GetMainExecutor: returns an Executor that runs on the main thread.
-		}
+                BindCamera();
 
-		void BindCamera()
-		{
-			if (cameraProvider != null)
-			{
-				// Unbind use cases before rebinding
-				cameraProvider.UnbindAll();
+            }), ContextCompat.GetMainExecutor(Context)); //GetMainExecutor: returns an Executor that runs on the main thread.
+        }
 
-				var cameraLocation = VirtualView.CameraLocation;
+        void BindCamera()
+        {
+            if (cameraProvider != null)
+            {
+                // Unbind use cases before rebinding
+                cameraProvider.UnbindAll();
 
-				// Select back camera as a default, or front camera otherwise
-				if (cameraLocation == CameraLocation.Rear && cameraProvider.HasCamera(CameraSelector.DefaultBackCamera))
-					cameraSelector = CameraSelector.DefaultBackCamera;
-				else if (cameraLocation == CameraLocation.Front && cameraProvider.HasCamera(CameraSelector.DefaultFrontCamera))
-					cameraSelector = CameraSelector.DefaultFrontCamera;
-				else
-					cameraSelector = CameraSelector.DefaultFrontCamera;
+                var cameraLocation = VirtualView.CameraLocation;
 
-				if (cameraSelector == null)
-					throw new System.Exception("Camera not found");
+                // Select back camera as a default, or front camera otherwise
+                if (cameraLocation == CameraLocation.Rear && cameraProvider.HasCamera(CameraSelector.DefaultBackCamera))
+                    cameraSelector = CameraSelector.DefaultBackCamera;
+                else if (cameraLocation == CameraLocation.Front && cameraProvider.HasCamera(CameraSelector.DefaultFrontCamera))
+                    cameraSelector = CameraSelector.DefaultFrontCamera;
+                else
+                    cameraSelector = CameraSelector.DefaultFrontCamera;
 
-				// The Context here SHOULD be something that's a lifecycle owner
-				if (Context is AndroidX.Lifecycle.ILifecycleOwner lifecycleOwner)
-					camera = cameraProvider.BindToLifecycle(lifecycleOwner, cameraSelector, cameraPreview, imageAnalyzer);
-			}
-		}
+                if (cameraSelector == null)
+                    throw new System.Exception("Camera not found");
 
-		internal void UpdateTorch()
-		{
-			var on = VirtualView.IsTorchOn;
+                // The Context here SHOULD be something that's a lifecycle owner
+                if (Context is AndroidX.Lifecycle.ILifecycleOwner lifecycleOwner)
+                    camera = cameraProvider.BindToLifecycle(lifecycleOwner, cameraSelector, cameraPreview, imageAnalyzer);
+            }
+        }
 
-			camera?.CameraControl?.EnableTorch(on);
-		}
+        internal void UpdateTorch()
+        {
+            var on = VirtualView.IsTorchOn;
 
-		internal void Focus(Point point)
-		{
+            camera?.CameraControl?.EnableTorch(on);
+        }
 
-		}
+        internal void Focus(Point point)
+        {
 
-		internal void AutoFocus()
-		{
+        }
 
-		}
+        internal void AutoFocus()
+        {
 
-		internal void UpdateCameraLocation()
-		{
-			BindCamera();
-		}
+        }
 
-		public void Dispose()
-		{
-			cameraExecutor?.Shutdown();
-			cameraExecutor?.Dispose();
-		}
-	}
+        internal void UpdateCameraLocation()
+        {
+            BindCamera();
+        }
+
+        public void Dispose()
+        {
+            cameraExecutor?.Shutdown();
+            cameraExecutor?.Dispose();
+        }
+    }
 }

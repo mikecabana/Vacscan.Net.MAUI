@@ -1,44 +1,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI"
              x:Class="Vacscan.Net.MAUI.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
-    <ScrollView Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
-        <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,Auto,*">
+    <GridLayout RowDefinitions="1*,3*,1*">
 
-            <Label Text="Hello, World!"
-                Grid.Row="0"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="CenterAndExpand" />
+        <zxing:CameraBarcodeReaderView
+			GridLayout.Row="0" GridLayout.RowSpan="3"
+			x:Name="barcodeView"
+			BarcodesDetected="BarcodesDetected" />
 
-            <Label Text="Welcome to .NET Multi-platform App UI"
-                Grid.Row="1"
-                SemanticProperties.Hint="Counts the number of times you click"
-                FontSize="16"
-                HorizontalOptions="CenterAndExpand" />
+        <GridLayout
+			GridLayout.Row="0"
+			BackgroundColor="#aa000000">
+            <Label GridLayout.Row="2" x:Name="Message" Text="No message" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
+        </GridLayout>
 
-            <Label Text="Current count: 0"
-                Grid.Row="2"
-                SemanticProperties.Hint="Counts the number of times you click"
-                FontSize="18"
-                FontAttributes="Bold"
-                x:Name="CounterLabel"
-                HorizontalOptions="Center" />
+        <GridLayout
+			GridLayout.Row="2"
+			BackgroundColor="#aa000000"
+			Padding="20"
+			ColumnDefinitions="Auto,*,Auto">
 
-            <Button Text="Click me"
-                Grid.Row="3"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+            <Button Text="SWITCH" GridLayout.Column="0" BackgroundColor="#aa000000" CornerRadius="8" BorderColor="Black" Clicked="SwitchCameraButton_Clicked" />
 
-            <Image Grid.Row="4"
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dotnet bot waving hi to you!"
-                WidthRequest="300"
-                HeightRequest="372"
-                HorizontalOptions="Center" />
 
-        </Grid>
-    </ScrollView>
+            <Button Text="TORCH" GridLayout.Column="2" BackgroundColor="#aa000000" CornerRadius="8" BorderColor="Black" Clicked="TorchButton_Clicked" />
+        </GridLayout>
+
+    </GridLayout>
 </ContentPage>

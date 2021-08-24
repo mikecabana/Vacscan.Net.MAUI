@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Maui.Controls;
 using ZXing.Net.Maui;
 
@@ -12,10 +13,9 @@ namespace Vacscan.Net.MAUI
 
             barcodeView.Options = new BarcodeReaderOptions
             {
-                Formats = BarcodeFormats.OneDimensional,
+                Formats = BarcodeFormats.All,
                 AutoRotate = true,
                 Multiple = true,
-                TryHarder = true,
             };
         }
 
@@ -27,6 +27,14 @@ namespace Vacscan.Net.MAUI
                 Message.Text = message;
                 Console.WriteLine(message);
             }
+
+            Device.InvokeOnMainThreadAsync(() =>
+            {
+                var r = e.Results.First();
+
+                barcodeGenerator.Value = r.Value;
+                barcodeGenerator.Format = r.Format;
+            });
         }
 
         void SwitchCameraButton_Clicked(object sender, EventArgs e)

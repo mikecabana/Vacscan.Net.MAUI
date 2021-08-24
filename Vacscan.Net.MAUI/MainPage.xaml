@@ -18,13 +18,24 @@
         </GridLayout>
 
         <GridLayout
-			GridLayout.Row="2"
+			GridLayout.Row="3"
 			BackgroundColor="#aa000000"
 			Padding="20"
 			ColumnDefinitions="Auto,*,Auto">
 
             <Button Text="SWITCH" GridLayout.Column="0" BackgroundColor="#aa000000" CornerRadius="8" BorderColor="Black" Clicked="SwitchCameraButton_Clicked" />
 
+            <zxing:BarcodeGeneratorView
+				x:Name="barcodeGenerator"
+				GridLayout.Column="1"
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				HeightRequest="100"
+				WidthRequest="100"
+				ForegroundColor="DarkBlue"
+				Format="QrCode"
+				Value="Bla"
+				BarcodeMargin="1" />
 
             <Button Text="TORCH" GridLayout.Column="2" BackgroundColor="#aa000000" CornerRadius="8" BorderColor="Black" Clicked="TorchButton_Clicked" />
         </GridLayout>

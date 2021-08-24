@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ZXing.Net.Maui.Readers
 {
-    public interface IBarcodeReader
-    {
-        BarcodeReaderOptions Options { get; set; }
+	public interface IBarcodeReader
+	{
+		BarcodeReaderOptions Options { get; set; }
 
-        BarcodeResult[] Decode(PixelBufferHolder image);
-    }
+		BarcodeResult[] Decode(PixelBufferHolder image);
+	}
 }

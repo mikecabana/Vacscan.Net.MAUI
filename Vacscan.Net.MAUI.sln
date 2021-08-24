@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmartHealthCard", "SmartHea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vacscan.Net.SHC.Test", "Vacscan.Net.SHC.Test\Vacscan.Net.SHC.Test.csproj", "{0ADD9F57-0BFC-4809-8181-6175C499D9B3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZXing.Net.MAUI", "ZXing.Net.MAUI\ZXing.Net.MAUI.csproj", "{55718A51-E0D3-4EFD-9BA4-D05A5B45B53E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{0ADD9F57-0BFC-4809-8181-6175C499D9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ADD9F57-0BFC-4809-8181-6175C499D9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0ADD9F57-0BFC-4809-8181-6175C499D9B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55718A51-E0D3-4EFD-9BA4-D05A5B45B53E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55718A51-E0D3-4EFD-9BA4-D05A5B45B53E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55718A51-E0D3-4EFD-9BA4-D05A5B45B53E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55718A51-E0D3-4EFD-9BA4-D05A5B45B53E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

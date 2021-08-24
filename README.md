@@ -5,7 +5,10 @@
 From the terminal
 ```terminal
 dotnet build Vacscan.Net.MAUI -t:Run -f net6.0-android
+
 dotnet build Vacscan.Net.MAUI -t:Run -f net6.0-ios
+dotnet build Vacscan.Net.MAUI -t:Run -f net6.0-ios /p:_DeviceName=:v2:udid=<DEVICE_UDID>
+
 dotnet build Vacscan.Net.MAUI -t:Run -f net6.0-maccatalyst
 ```
 

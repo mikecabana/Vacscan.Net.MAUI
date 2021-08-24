@@ -5,6 +5,14 @@ VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vacscan.Net.MAUI", "Vacscan.Net.MAUI\Vacscan.Net.MAUI.csproj", "{BE89655E-A995-4D33-A70F-C684543057BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vacscan.Net.SHC", "Vacscan.Net.SHC\Vacscan.Net.SHC.csproj", "{B8E5DC60-AEB0-431C-A461-663CC6DB8958}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vacscan.Net.Core", "Vacscan.Net.Core\Vacscan.Net.Core.csproj", "{F545B7F0-2999-4150-8A71-5113EAEEA6CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmartHealthCard", "SmartHealthCard", "{883F9DAF-457F-419D-B88D-B2202E588DB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vacscan.Net.SHC.Test", "Vacscan.Net.SHC.Test\Vacscan.Net.SHC.Test.csproj", "{0ADD9F57-0BFC-4809-8181-6175C499D9B3}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZXing.Net.MAUI", "ZXing.Net.MAUI\ZXing.Net.MAUI.csproj", "{55718A51-E0D3-4EFD-9BA4-D05A5B45B53E}"
 EndProject
 Global
@@ -19,6 +27,18 @@ Global
 		{BE89655E-A995-4D33-A70F-C684543057BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE89655E-A995-4D33-A70F-C684543057BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE89655E-A995-4D33-A70F-C684543057BE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B8E5DC60-AEB0-431C-A461-663CC6DB8958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E5DC60-AEB0-431C-A461-663CC6DB8958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8E5DC60-AEB0-431C-A461-663CC6DB8958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E5DC60-AEB0-431C-A461-663CC6DB8958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F545B7F0-2999-4150-8A71-5113EAEEA6CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F545B7F0-2999-4150-8A71-5113EAEEA6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F545B7F0-2999-4150-8A71-5113EAEEA6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F545B7F0-2999-4150-8A71-5113EAEEA6CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ADD9F57-0BFC-4809-8181-6175C499D9B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ADD9F57-0BFC-4809-8181-6175C499D9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ADD9F57-0BFC-4809-8181-6175C499D9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ADD9F57-0BFC-4809-8181-6175C499D9B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55718A51-E0D3-4EFD-9BA4-D05A5B45B53E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55718A51-E0D3-4EFD-9BA4-D05A5B45B53E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55718A51-E0D3-4EFD-9BA4-D05A5B45B53E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,6 +46,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8E5DC60-AEB0-431C-A461-663CC6DB8958} = {883F9DAF-457F-419D-B88D-B2202E588DB2}
+		{0ADD9F57-0BFC-4809-8181-6175C499D9B3} = {883F9DAF-457F-419D-B88D-B2202E588DB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

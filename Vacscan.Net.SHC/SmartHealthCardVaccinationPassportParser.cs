@@ -47,14 +47,22 @@ namespace Vacscan.Net.SHC
             {
                 var shc = jWTSmartHealthCardParser.ConvertRawSmartHealthCardToJWT(vaccinationPassportRaw);
 
+                var immunizationPassport = await ConvertSmartHealthCardToVaccinationPassportAsync(shc.Payload);
+
                 var isValid = await jWTSmartHealthCardValidator.ValidateSmartHealthCardAsync(shc);
 
-                if (isValid)
+                if(isValid == null)
                 {
-                    result = new ImmunizationPassportParsingResult { 
-                        Raw = vaccinationPassportRaw,
-                        ImmunizationPassport = await ConvertSmartHealthCardToVaccinationPassportAsync(shc.Payload)
+                    var warning = new Error {
+                        Label = "Might be Fraudulent",
+                        Description = "Could not be validated"
                     };
+
+                    result = ImmunizationPassportParsingResult.Success(immunizationPassport, warning);
+                }
+                else if (isValid.Value)
+                {
+                    result = ImmunizationPassportParsingResult.Success(immunizationPassport);
                 }
                 else
                 {

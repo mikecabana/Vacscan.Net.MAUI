@@ -40,17 +40,17 @@ public class SmartHealthCardVaccinationPassportParserTest
             .AddIssuer(Issuer.CanadaQuebec)
             .ConfigureSmartHealthCard((options) => {
                 options.AddAuthority("covid19.quebec.ca");
-                options.AddJwk("qFdl0tDZK9JAWP6g9_cAv57c3KWxMKwvxCrRVSzcxvM", new JWK {
-                    X = "XSxuwW_VI_s6lAw6LAlL8N7REGzQd_zXeIVDHP_j_Do",
-                    Y = "88-aI4WAEl4YmUpew40a9vq_w5OcFvsuaKMxJRLRLL0"
-                });
+                //options.AddJwk("qFdl0tDZK9JAWP6g9_cAv57c3KWxMKwvxCrRVSzcxvM", new JWK {
+                //    X = "XSxuwW_VI_s6lAw6LAlL8N7REGzQd_zXeIVDHP_j_Do",
+                //    Y = "88-aI4WAEl4YmUpew40a9vq_w5OcFvsuaKMxJRLRLL0"
+                //});
             });
 
         var serviceProvider = services.BuildServiceProvider();
         var parsor = serviceProvider.GetRequiredService<ImmunizationPassportParser>();
 
         var raw = "<shc qr code here>";
-
+        
         var result = await parsor.TryParseImmunizationPassportAsync(raw);
     }
 }

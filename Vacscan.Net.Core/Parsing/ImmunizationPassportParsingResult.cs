@@ -5,11 +5,12 @@ namespace Vacscan.Net.Core.Parsing
 {
     public class ImmunizationPassportParsingResult
     {
-        public static ImmunizationPassportParsingResult Success(ImmunizationPassport immunizationPassport)
+        public static ImmunizationPassportParsingResult Success(ImmunizationPassport immunizationPassport, Error warning = null)
         {
             return new ImmunizationPassportParsingResult
             {
-                ImmunizationPassport = immunizationPassport
+                ImmunizationPassport = immunizationPassport,
+                Warning = warning
             };
         }
 
@@ -20,7 +21,6 @@ namespace Vacscan.Net.Core.Parsing
                 Error = error
             };
         }
-
 
         public static ImmunizationPassportParsingResult NotRecognized()
         {
@@ -36,5 +36,9 @@ namespace Vacscan.Net.Core.Parsing
         public bool HasError => Error != null;
 
         public bool IsSuccess => !HasError && ImmunizationPassport != null;
+
+        public Error Warning { get; set; }
+
+        public bool HasWarning => Warning != null;
     }
 }

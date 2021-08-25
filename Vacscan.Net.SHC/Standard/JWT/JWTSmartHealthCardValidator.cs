@@ -14,7 +14,7 @@ namespace Vacscan.Net.SHC.Standard.JWT
             this.jwtSmartHealthCardJWKProviders = jwtSmartHealthCardJWKProviders;
         }
 
-        public async Task<bool> ValidateSmartHealthCardAsync(JWTSmartHealthCard shc)
+        public async Task<bool?> ValidateSmartHealthCardAsync(JWTSmartHealthCard shc)
         {
             foreach (var smartHealthCardJWKProvider in this.jwtSmartHealthCardJWKProviders)
             {
@@ -38,7 +38,7 @@ namespace Vacscan.Net.SHC.Standard.JWT
                 }
             }
 
-            return false;
+            return null;
         }
     }
 }

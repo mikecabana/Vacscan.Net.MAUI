@@ -10,7 +10,7 @@ public class SmartHealthCardVaccinationPassportParserTest
     [TestMethod]
     public async Task TestMethod1()
     {
-        var raw = "<your-qr-code-data-here>";
+        var raw = "${SHC_RAW}";
 
         var parsor = new SmartHealthCardVaccinationPassportParser(new[] {
             new StaticSmartHealthCardJWKProvider(new JWK{

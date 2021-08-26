@@ -25,14 +25,14 @@ jobs:
       env:
         SHC_RAW: ${{ secrets.SHC_RAW }}
 
-    - name: Install MAUI workload
-      run: dotnet workload install maui-android
+#     - name: Install MAUI workload
+#       run: dotnet workload install maui-android
 
     - name: Restore dependencies
       run: dotnet restore
       
-    - name: Build
-      run: dotnet build --no-restore
+    - name: Build SHC
+      run: dotnet build .\Vacscan.Net.SHC --no-restore
 
     - name: Test SHC
-      run: dotnet test .\Vacscan.Net.SHC.Test  --no-build --verbosity normal
+      run: dotnet test .\Vacscan.Net.SHC.Test --no-build --verbosity normal

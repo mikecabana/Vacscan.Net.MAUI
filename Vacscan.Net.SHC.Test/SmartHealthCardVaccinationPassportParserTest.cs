@@ -15,6 +15,7 @@ public class SmartHealthCardVaccinationPassportParserTest
     {
         var services = new ServiceCollection();
 
+
         services
             .AddVaccine(Vaccine.Covid19Astrazeneca)
             .ConfigureSmartHealthCard((options) => {

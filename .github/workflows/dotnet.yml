@@ -9,17 +9,30 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+    
+    - uses: actions/setup-dotnet@v1
+      name: Setup .NET
       with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-#       run: dotnet build --no-restore
-#     - name: Test
-#       run: dotnet test --no-build --verbosity normal
+        dotnet-version: '6.0.x'
+        include-prerelease: true
+        
+    - uses: franzbischoff/replace_envs@v1
+      name: Replace Tokens
+      env:
+        SHC_RAW: ${{ secrets.SHC_RAW }}
+
+#     - name: Install MAUI workload
+#       run: dotnet workload install maui-android
+
+    - name: Restore SHC dependencies
+      run: dotnet restore .\Vacscan.Net.SHC
+      
+    - name: Build SHC
+      run: dotnet build .\Vacscan.Net.SHC --no-restore
+
+    - name: Test SHC
+      run: dotnet test .\Vacscan.Net.SHC.Test --no-build --verbosity normal

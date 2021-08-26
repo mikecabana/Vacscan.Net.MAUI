@@ -14,11 +14,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+    - uses: actions/setup-dotnet@v1
+      name: Setup .NET
       with:
         dotnet-version: 6.0.x
         
+    - uses: franzbischoff/replace_envs@v1
+      name: Replace Tokens
+      env:
+        SHC_RAW: ${{ secrets.SHC_RAW }}
+
     - name: Restore dependencies
       run: dotnet restore
       

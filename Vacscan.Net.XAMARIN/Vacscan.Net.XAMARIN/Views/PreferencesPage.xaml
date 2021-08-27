@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vacscan.Net.XAMARIN.Views.PreferencesPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Country" />
+            <Picker Title="Select a country" ItemsSource="{Binding CountryNames}" SelectedItem="{Binding SelectedCountryName, Mode=TwoWay}" />
+        
+            <Label Text="Region" />
+            <Picker Title="Select a region" ItemsSource="{Binding RegionNames}" SelectedItem="{Binding SelectedRegionName, Mode=TwoWay}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

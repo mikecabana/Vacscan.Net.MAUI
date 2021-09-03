@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vacscan.Net.XAMARIN.Views.ScanPage"
+             xmlns:vm="clr-namespace:Vacscan.Net.XAMARIN.ViewModels"
              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+
+    <ContentPage.BindingContext>
+        <vm:ScanViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="scanResultText" />

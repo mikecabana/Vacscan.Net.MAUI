@@ -17,7 +17,7 @@ namespace Vacscan.Net.XAMARIN.Views
             InitializeComponent();
         }
 
-        void ZXingScannerView_OnScanResult(ZXing.Result result)
+        public void ZXingScannerView_OnScanResult(ZXing.Result result)
         {
             Device.BeginInvokeOnMainThread(() =>
             {

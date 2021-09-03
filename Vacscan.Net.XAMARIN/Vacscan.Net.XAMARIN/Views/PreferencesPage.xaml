@@ -1,14 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Vacscan.Net.XAMARIN.Views.PreferencesPage">
+             x:Class="Vacscan.Net.XAMARIN.Views.PreferencesPage"
+             xmlns:vm="clr-namespace:Vacscan.Net.XAMARIN.ViewModels">
+
+    <ContentPage.BindingContext>
+        <vm:PreferencesViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Country" />
-            <Picker Title="Select a country" ItemsSource="{Binding CountryNames}" SelectedItem="{Binding SelectedCountryName, Mode=TwoWay}" />
-        
-            <Label Text="Region" />
-            <Picker Title="Select a region" ItemsSource="{Binding RegionNames}" SelectedItem="{Binding SelectedRegionName, Mode=TwoWay}" />
+        <StackLayout Padding="10,10,10,10" >
+            <Label Text="Location" />
+            <Picker x:Name="countryPicker"
+                    Title="Select a country"
+                    ItemsSource="{Binding AvailableCountries}" 
+                    SelectedItem="{Binding SelectedCountryName, Mode=TwoWay}" 
+                    SelectedIndexChanged="OnCountryChanged">
+                <Picker.Items>
+
+                </Picker.Items>
+            </Picker>
+
+            <Picker x:Name="regionPicker"
+                    Title="Select a region"
+                    ItemsSource="{Binding AvailableRegions}"
+                    SelectedItem="{Binding SelectedRegionName, Mode=TwoWay}" 
+                    SelectedIndexChanged="OnRegionChanged" />
+            <Button x:Name="saveButtin" Text="Save" Margin="0,10,0,10" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

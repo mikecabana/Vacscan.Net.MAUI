@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Vacscan.Net.XAMARIN.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomeView : ContentPage
+    public partial class HomePage : ContentPage
     {
-        public HomeView()
+        public HomePage()
         {
             InitializeComponent();
         }
